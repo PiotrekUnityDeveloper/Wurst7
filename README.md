@@ -1,4 +1,25 @@
-# Wurst Client v7
+# Wurst Client v7 Custom Development [Bigos Client]
+i know there are like 300 wurst client forks but i was bored, okay? So this is a list of modules i added:
+- AimBot (instantly aims at entities)
+- SmoothAim (smoothly aims at entities)
+- ClickAimBot (aims instantly/partially at entities)
+- AutoSwing (swings player's main hand every set(X) seconds)
+- AutoBucketMLG (makes water bucket mlg's to avoid fall damage)
+
+Module Changes:
+- Made ScaffoldWalk place blocks only on the same Y position the player was standing on when enabling the module - 1 (below player's feet)
+- Added module called Scaffold which acts like the old ScaffoldWalk module
+
+ClickGUI Changes:
+Added 4 New Tabs:
+- Player
+- Ghost
+- Blatant
+- Client (currently, this one is empty)
+
+Moved some modules from Combat tab to Blatant and Ghost tabs.
+==================================================================================================================================================
+hope u enjoy
 
 ## ⚠ We Are Looking For Translators & Proofreaders ⚠
 
@@ -53,3 +74,11 @@ This code is licensed under the GNU General Public License v3. **You can only us
 If you are contributing multiple unrelated features, please create a separate pull request for each feature. Squeezing everything into one giant pull request makes it very difficult for us to add your features, as we have to test, validate and add them one by one.
 
 Thank you for your understanding - and thanks again for taking the time to contribute!!
+
+
+
+
+...also
+
+**Thanks for help with understanding how SmoothAim works (Meteor client devs)**
+https://github.com/MeteorDevelopment/meteor-client/blob/master/src/main/java/meteordevelopment/meteorclient/systems/modules/combat/AimAssist.java
