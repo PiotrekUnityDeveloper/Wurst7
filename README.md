@@ -18,6 +18,15 @@ Added 4 New Tabs:
 - Client (currently, this one is empty)
 
 Moved some modules from Combat tab to Blatant and Ghost tabs.
+
+##Planned Features:
+- AimAssist module (lowers mouse sensitivity when hovering over an enemy)
+- EntityLookFOV (renders a camera fov of an enemy, so u can tell if they see you from the corner of the screen. And yes i know this has no practical use)
+- AirJump, AirPlace
+- SuperHot Slowmotion module which stops time with timer when player is not moving :D
+- CrystalPVP modules
+- More Killaura options
+- and Generally more modules
 ==================================================================================================================================================
 hope u enjoy
 
