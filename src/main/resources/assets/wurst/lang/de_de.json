@@ -15,6 +15,8 @@
   "description.wurst.hack.autodrop": "Lässt ungewollte Items automatisch fallen.",
   "description.wurst.hack.autoleave": "Verlässt automatisch den Server wenn deine Gesundheit niedrig ist.",
   "description.wurst.hack.autoeat": "Isst automatisch Essen.",
+  "description.wurst.hack.levitator": "Makes you levitate without potions",
+  "description.wurst.hack.automlg": "Automatic MLG water bucket or powder snow.\n\n§lNote:§r Do not use with AutoEat",
   "description.wurst.hack.autofarm": "Erntet und re-plantet Pflanzen automatisch.\nDas funktioniert mit Weizen, Karotten, Kartoffeln, Rote Beete, Kürbissen, Melonen, Kakteen, Zuckerrohr, Seetang, Bambus, Netherwarzen, und Kakaobohnen.",
   "description.wurst.hack.autofish": "Angelt automatisch mit deiner besten Angel. Wenn es beim Angeln eine noch bessere Angel findet, wechselt es automatisch.",
   "description.wurst.hack.automine": "Baut automatisch den Block ab, den du gerade anguckst.",

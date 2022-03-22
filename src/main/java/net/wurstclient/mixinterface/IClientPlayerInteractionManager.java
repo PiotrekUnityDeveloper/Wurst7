@@ -22,6 +22,8 @@ public interface IClientPlayerInteractionManager
 	
 	public void windowClick_QUICK_MOVE(int slot);
 	
+	public void windowClick_SWAP(int slot, int swapWith);
+	
 	public void windowClick_THROW(int slot);
 	
 	public void rightClickItem();

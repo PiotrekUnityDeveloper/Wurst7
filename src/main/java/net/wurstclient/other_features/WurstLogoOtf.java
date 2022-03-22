@@ -16,7 +16,7 @@ import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.ColorSetting;
 import net.wurstclient.settings.EnumSetting;
 
-@SearchTags({"wurst logo", "top left corner"})
+@SearchTags({"wurst logo", "top left corner", "watermark"})
 @DontBlock
 public final class WurstLogoOtf extends OtherFeature
 {

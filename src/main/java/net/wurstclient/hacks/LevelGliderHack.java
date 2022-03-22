@@ -23,7 +23,7 @@ import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
 import net.wurstclient.util.BlockUtils;
 
-public final class GlideHack extends Hack implements UpdateListener
+public final class LevelGliderHack extends Hack implements UpdateListener
 {
 	private final SliderSetting fallSpeed = new SliderSetting("Fall speed",
 		0.125, 0.005, 0.25, 0.005, ValueDisplay.DECIMAL);
@@ -33,18 +33,18 @@ public final class GlideHack extends Hack implements UpdateListener
 			5, 0.05, ValueDisplay.PERCENTAGE);
 	
 	private final SliderSetting minHeight = new SliderSetting("Min height",
-		"Won't glide when you are\n" + "too close to the ground.", 0, 0, 10,
+		"Won't glide when you are\n" + "too close to the ground.", 0, 0, 2,
 		0.01,
 		v -> v == 0 ? "disabled" : ValueDisplay.DECIMAL.getValueString(v));
 	
-	public GlideHack()
+	public LevelGliderHack()
 	{
-		super("Glide");
+		super("LevelGlider");
 		
 		setCategory(Category.MOVEMENT);
-		addSetting(fallSpeed);
+		//addSetting(fallSpeed);
 		addSetting(moveSpeed);
-		addSetting(minHeight);
+		//addSetting(minHeight);
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public final class GlideHack extends Hack implements UpdateListener
 				return;
 		}
 		
-		player.setVelocity(v.x, Math.max(v.y, -fallSpeed.getValue()), v.z);
+		player.setVelocity(v.x, 0, v.z);
 		player.airStrafingSpeed *= moveSpeed.getValueF();
 	}
 }

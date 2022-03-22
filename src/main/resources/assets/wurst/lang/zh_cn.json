@@ -18,6 +18,8 @@
   "description.wurst.hack.autopotion": "当你的生命值过低时候，自动扔一瓶喷溅型瞬间恢复。",
   "description.wurst.hack.autoreconnect": "当你被服务器踢出时候，自动重连。",
   "description.wurst.hack.autorespawn": "当你死亡的时候自动重生。",
+  "description.wurst.hack.levitator": "Makes you levitate without potions",
+  "description.wurst.hack.automlg": "Automatic MLG water bucket or powder snow.\n\n§lNote:§r Do not use with AutoEat",
   "description.wurst.hack.autosign": "立即在每个牌子上写下任何你想要的文字，当此功能激活的时候，你只需要很普通的在第一个牌子上，写你想要的文字，之后接下来所有牌子都跟上一个一样。",
   "description.wurst.hack.autosoup": "当你生命值低下的时候自动喝汤。\n\n§l注意：§r 这个功能是忽视 “饥饿值”，因为特定服务器小游戏内（如 Hypixel），喝汤是直接补充生命，而不是回复饱腹值。如果你正在玩的服务器没有这个功能，请使用 AutoEat 功能而不是这个。",
   "description.wurst.hack.autosprint": "让你自动进入疾跑。",

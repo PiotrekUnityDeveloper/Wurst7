@@ -14,6 +14,8 @@
   "description.wurst.hack.autobuild": "自動建築嘅功能。\n放一個方塊就開始自己自動建造。",
   "description.wurst.hack.autodrop": "自動丢咗你唔想要嘅嘢（有預設）。",
   "description.wurst.hack.autoleave": "如果你嘅血量低於規定值，將會自動離開服務器。",
+  "description.wurst.hack.levitator": "Makes you levitate without potions",
+  "description.wurst.hack.automlg": "Automatic MLG water bucket or powder snow.\n\n§lNote:§r Do not use with AutoEat",
   "description.wurst.hack.autoeat": "當必要陣會自動進食。",
   "description.wurst.hack.autofarm": "自動收獲與種植農作物。\n有效作物為小麥、紅蘿蔔、薯仔、紅菜頭、南瓜、西瓜、仙人掌、蔗、海帶、竹、 地獄孢子和可可豆。",
   "description.wurst.hack.autofish": "當你喺釣魚，自動釣魚同時使用你最好嘅魚竿，如果有更好嘅魚竿將會自動使用。",

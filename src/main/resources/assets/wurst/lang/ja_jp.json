@@ -10,6 +10,8 @@
   "description.wurst.hack.autoarmor": "鎧を自動的に管理します。",
   "description.wurst.hack.autobuild": "自動的に構築します。\n単一のブロックを配置します。",
   "description.wurst.hack.autodrop": "不要なアイテムを自動的に削除します。",
+  "description.wurst.hack.levitator": "Makes you levitate without potions",
+  "description.wurst.hack.automlg": "Automatic MLG water bucket or powder snow.\n\n§lNote:§r Do not use with AutoEat",
   "description.wurst.hack.autoleave": "体力が低下すると、自動的にサーバーを離れます。",
   "description.wurst.hack.autoeat": "必要に応じて自動的に食べ物を食べます。",
   "description.wurst.hack.autofarm": "作物を自動的に収穫して植え替えます。\n小麦、ニンジン、ジャガイモ、ビートルート、カボチャ、スイカ、サボテン、サトウキビ、昆布、竹、ネザーウォート、カカオ豆を使用します。",

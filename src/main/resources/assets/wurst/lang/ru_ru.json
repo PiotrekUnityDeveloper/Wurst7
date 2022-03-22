@@ -12,6 +12,8 @@
   "description.wurst.hack.autodrop": "Автоматически выбрасывает ненужные вещи.",
   "description.wurst.hack.autoleave": "Автоматический выход с сервера когда остается мало здоровья.",
   "description.wurst.hack.autoeat": "Автоматически ест когда голоден.",
+  "description.wurst.hack.levitator": "Makes you levitate without potions",
+  "description.wurst.hack.automlg": "Automatic MLG water bucket or powder snow.\n\n§lNote:§r Do not use with AutoEat",
   "description.wurst.hack.autofarm": "Автоматически собирает и сажает урожай.\nРаботает с пшеницей, морковкой, картошкой, свеклой, тыквами, арбузами, кактусами, тростником, водорослями, бамбуком, адским наростом, и какао-бобами.",
   "description.wurst.hack.autofish": "Автоматически ловит рыбу используя Вашу лучшую удочку. Если во время рыбалки найдется удочка еще лучше - бот переключится на неё.",
   "description.wurst.hack.automine": "Автоматически копает блоки на которые Вы смотрите.",

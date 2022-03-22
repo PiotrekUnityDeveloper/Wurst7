@@ -108,7 +108,6 @@
   "description.wurst.hack.parkour": "Makes you jump automatically when reaching the edge of a block.\nUseful for parkours and jump'n'runs.",
   "description.wurst.hack.playeresp": "Highlights nearby players.\nESP boxes of friends will appear in blue.",
   "description.wurst.hack.levitator": "Makes you levitate without potions",
-  "description.wurst.hack.automlg": "Automatic MLG water bucket or powder snow.\n\n§lNote:§r Do not use with AutoEat",
   "description.wurst.hack.playerfinder": "Finds far away players during thunderstorms.",
   "description.wurst.hack.portalgui": "Allows you to open GUIs in portals.",
   "description.wurst.hack.potionsaver": "Freezes all potion effects while you are standing still.",

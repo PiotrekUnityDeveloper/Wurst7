@@ -170,6 +170,11 @@ public final class HackList implements UpdateListener
 	public final TunnellerHack tunnellerHack = new TunnellerHack();
 	public final XRayHack xRayHack = new XRayHack();
 	
+	//newly added modules
+	public final LevitatorHack LevitatorHack = new LevitatorHack();
+	public final AutoMLGHack autoMLGHack = new AutoMLGHack();
+	public final LevelGliderHack levelGliderHack = new LevelGliderHack();
+	
 	private final TreeMap<String, Hack> hax =
 		new TreeMap<>(String::compareToIgnoreCase);
 	
