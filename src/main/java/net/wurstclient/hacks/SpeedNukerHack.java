@@ -76,7 +76,7 @@ public final class SpeedNukerHack extends Hack
 	{
 		super("SpeedNuker");
 		
-		setCategory(Category.BLOCKS);
+		setCategory(Category.BLATANT);
 		addSetting(range);
 		addSetting(mode);
 		addSetting(id);

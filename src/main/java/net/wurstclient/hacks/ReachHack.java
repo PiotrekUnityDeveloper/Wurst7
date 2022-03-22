@@ -19,11 +19,15 @@ public final class ReachHack extends Hack
 	private final SliderSetting range =
 		new SliderSetting("Range", 6, 1, 20, 0.05, ValueDisplay.DECIMAL);
 	
+	private final SliderSetting rangedev =
+			new SliderSetting("Range Deviation", 0, 0, 4, 0.001, ValueDisplay.DECIMAL);
+	
 	public ReachHack()
 	{
 		super("Reach");
 		setCategory(Category.OTHER);
 		addSetting(range);
+		addSetting(rangedev);
 	}
 	
 	public float getReachDistance()

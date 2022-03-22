@@ -93,7 +93,7 @@ public final class TriggerBotHack extends Hack implements UpdateListener
 	public TriggerBotHack()
 	{
 		super("TriggerBot");
-		setCategory(Category.COMBAT);
+		setCategory(Category.GHOST);
 		addSetting(range);
 		addSetting(filterPlayers);
 		addSetting(filterSleeping);

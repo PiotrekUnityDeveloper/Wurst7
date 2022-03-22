@@ -28,11 +28,13 @@ import net.wurstclient.util.RotationUtils.Rotation;
 
 @SearchTags({"scaffold walk", "BridgeWalk", "bridge walk", "AutoBridge",
 	"auto bridge", "tower"})
-public final class ScaffoldWalkHack extends Hack implements UpdateListener
+public final class ScaffoldHack extends Hack implements UpdateListener
 {
-	public ScaffoldWalkHack()
+	private int currentY = 0;
+	
+	public ScaffoldHack()
 	{
-		super("Scaffold");
+		super("ScaffoldWalk"); //its basically scaffold, but work on a specific Y position (the one below player feet when enabling the module)
 		setCategory(Category.BLOCKS);
 	}
 	
@@ -40,6 +42,7 @@ public final class ScaffoldWalkHack extends Hack implements UpdateListener
 	public void onEnable()
 	{
 		EVENTS.add(UpdateListener.class, this);
+		currentY = MC.player.getBlockPos().getY();
 	}
 	
 	@Override
@@ -52,6 +55,7 @@ public final class ScaffoldWalkHack extends Hack implements UpdateListener
 	public void onUpdate()
 	{
 		BlockPos belowPlayer = new BlockPos(MC.player.getPos()).down();
+		belowPlayer = new BlockPos(belowPlayer.getX(), currentY - 1, belowPlayer.getZ());
 		
 		// check if block is already placed
 		if(!BlockUtils.getState(belowPlayer).getMaterial().isReplaceable())

@@ -83,7 +83,7 @@ public final class AutoFishHack extends Hack
 	{
 		super("AutoFish");
 		
-		setCategory(Category.OTHER);
+		setCategory(Category.PLAYER);
 		addSetting(validRange);
 		addSetting(debugDraw);
 		addSetting(ddColor);

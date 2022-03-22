@@ -39,30 +39,40 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.wurstclient.Category;
-import net.wurstclient.SearchTags;
-import net.wurstclient.events.PostMotionListener;
 import net.wurstclient.events.RenderListener;
 import net.wurstclient.events.UpdateListener;
+import net.wurstclient.events.LeftClickListener;
+import net.wurstclient.events.LeftClickListener.LeftClickEvent;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.settings.CheckboxSetting;
 import net.wurstclient.settings.EnumSetting;
 import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
+import net.wurstclient.util.ChatUtils;
 import net.wurstclient.util.FakePlayerEntity;
 import net.wurstclient.util.RenderUtils;
 import net.wurstclient.util.RotationUtils;
+import net.wurstclient.util.RotationUtils.Rotation;
+import net.wurstclient.util.Vec3;
 
-@SearchTags({"kill aura", "ForceField", "force field", "CrystalAura",
-	"crystal aura", "AutoCrystal", "auto crystal"})
-public final class KillauraHack extends Hack
-	implements UpdateListener, PostMotionListener, RenderListener
+public final class ClickAimBot extends Hack
+	implements UpdateListener, RenderListener, LeftClickListener
 {
-	private final SliderSetting range = new SliderSetting("Range",
-		"Determines how far Killaura will reach\n" + "to attack entities.\n"
-			+ "Anything that is further away than the\n"
-			+ "specified value will not be attacked.",
-		5, 1, 10, 0.05, ValueDisplay.DECIMAL);
+	private final SliderSetting range =
+		new SliderSetting("Range", 4.25, 1, 4.25, 0.05, ValueDisplay.DECIMAL);
+	
+	//private final SliderSetting aimspeed =
+			//new SliderSetting("Aiming Speed", 0.75, 0.01, 15, 0.01, ValueDisplay.DECIMAL);
+	
+	//private final CheckboxSetting instant = new CheckboxSetting(
+			//"Instant Aim", "Aims instantly at the target. Makes you extremely obvious, ure hacking :D", false);
+	
+	private final CheckboxSetting legitclick = new CheckboxSetting(
+		"Partial Aiming", "Aims at half of the way to the target to avoid getting detected by anticheats", true);
+
 	
 	private final EnumSetting<Priority> priority = new EnumSetting<>("Priority",
 		"Determines which entity will be attacked first.\n"
@@ -77,40 +87,27 @@ public final class KillauraHack extends Hack
 	
 	private final CheckboxSetting filterPlayers = new CheckboxSetting(
 		"Filter players", "Won't attack other players.", false);
-	
-	private final CheckboxSetting filterSleeping =
-		new CheckboxSetting("Filter sleeping",
-			"Won't attack sleeping players.\n\n"
-				+ "Useful for servers like Mineplex that place\n"
-				+ "sleeping players on the ground to make them\n"
-				+ "look like corpses.",
-			false);
-	
-	private final SliderSetting filterFlying = new SliderSetting(
-		"Filter flying",
-		"Won't attack players that are at least\n"
-			+ "the given distance above ground.\n\n"
-			+ "Useful for servers that place a flying\n"
-			+ "player behind you to try and detect\n" + "your Killaura.",
-		0, 0, 2, 0.05,
-		v -> v == 0 ? "off" : ValueDisplay.DECIMAL.getValueString(v));
+	private final CheckboxSetting filterSleeping = new CheckboxSetting(
+		"Filter sleeping", "Won't attack sleeping players.", true);
+	private final SliderSetting filterFlying =
+		new SliderSetting("Filter flying",
+			"Won't attack players that\n" + "are at least the given\n"
+				+ "distance above ground.",
+			0.5, 0, 2, 0.05,
+			v -> v == 0 ? "off" : ValueDisplay.DECIMAL.getValueString(v));
 	
 	private final CheckboxSetting filterMonsters = new CheckboxSetting(
 		"Filter monsters", "Won't attack zombies, creepers, etc.", false);
-	
 	private final CheckboxSetting filterPigmen = new CheckboxSetting(
 		"Filter pigmen", "Won't attack zombie pigmen.", false);
-	
 	private final CheckboxSetting filterEndermen =
 		new CheckboxSetting("Filter endermen", "Won't attack endermen.", false);
 	
 	private final CheckboxSetting filterAnimals = new CheckboxSetting(
 		"Filter animals", "Won't attack pigs, cows, etc.", false);
-	
 	private final CheckboxSetting filterBabies =
 		new CheckboxSetting("Filter babies",
 			"Won't attack baby pigs,\n" + "baby villagers, etc.", false);
-	
 	private final CheckboxSetting filterPets =
 		new CheckboxSetting("Filter pets",
 			"Won't attack tamed wolves,\n" + "tamed horses, etc.", false);
@@ -124,7 +121,7 @@ public final class KillauraHack extends Hack
 			"Won't attack iron golems,\n" + "snow golems and shulkers.", false);
 	
 	private final CheckboxSetting filterInvisible = new CheckboxSetting(
-		"Filter invisible", "Won't attack invisible entities.", false);
+		"Filter invisible", "Won't attack invisible entities.", true);
 	private final CheckboxSetting filterNamed = new CheckboxSetting(
 		"Filter named", "Won't attack name-tagged entities.", false);
 	
@@ -134,16 +131,20 @@ public final class KillauraHack extends Hack
 		"Filter end crystals", "Won't attack end crystals.", false);
 	
 	private Entity target;
-	private Entity renderTarget;
 	
-	public KillauraHack()
+	 private final Vec3 vec3d1 = new Vec3();
+	    //private Entity target;
+	
+	public ClickAimBot()
 	{
-		super("Killaura");
-		setCategory(Category.COMBAT);
-		
+		super("ClickAimBot");
+		setCategory(Category.GHOST);
 		addSetting(range);
 		addSetting(priority);
 		addSetting(fov);
+		//addSetting(aimspeed);
+		//addSetting(instant);
+		addSetting(legitclick);
 		addSetting(filterPlayers);
 		addSetting(filterSleeping);
 		addSetting(filterFlying);
@@ -159,7 +160,10 @@ public final class KillauraHack extends Hack
 		addSetting(filterNamed);
 		addSetting(filterStands);
 		addSetting(filterCrystals);
+		
 	}
+	
+	
 	
 	@Override
 	protected void onEnable()
@@ -168,29 +172,36 @@ public final class KillauraHack extends Hack
 		WURST.getHax().clickAuraHack.setEnabled(false);
 		WURST.getHax().crystalAuraHack.setEnabled(false);
 		WURST.getHax().fightBotHack.setEnabled(false);
-		WURST.getHax().killauraLegitHack.setEnabled(false);
+		WURST.getHax().killauraHack.setEnabled(false);
 		WURST.getHax().multiAuraHack.setEnabled(false);
 		WURST.getHax().protectHack.setEnabled(false);
 		WURST.getHax().triggerBotHack.setEnabled(false);
 		WURST.getHax().tpAuraHack.setEnabled(false);
-		WURST.getHax().aimBotHack.setEnabled(false);
+		WURST.getHax().killauraLegitHack.setEnabled(false);
 		WURST.getHax().smoothAimHack.setEnabled(false);
 		
 		EVENTS.add(UpdateListener.class, this);
-		EVENTS.add(PostMotionListener.class, this);
 		EVENTS.add(RenderListener.class, this);
+		EVENTS.add(LeftClickListener.class, this);
 	}
 	
 	@Override
 	protected void onDisable()
 	{
 		EVENTS.remove(UpdateListener.class, this);
-		EVENTS.remove(PostMotionListener.class, this);
 		EVENTS.remove(RenderListener.class, this);
-		
+		EVENTS.remove(LeftClickListener.class, this);
 		target = null;
-		renderTarget = null;
 	}
+	
+	@Override
+	public void onLeftClick(LeftClickEvent event)
+	{
+		//aim(target, (double)MC.getTickDelta(), true);
+		InstaAim(target);
+	}
+	
+	
 	
 	@Override
 	public void onUpdate()
@@ -279,34 +290,137 @@ public final class KillauraHack extends Hack
 			stream = stream.filter(e -> !(e instanceof EndCrystalEntity));
 		
 		target = stream.min(priority.getSelected().comparator).orElse(null);
-		renderTarget = target;
 		if(target == null)
 			return;
 		
 		WURST.getHax().autoSwordHack.setSlot();
 		
-		WURST.getRotationFaker()
-			.faceVectorPacket(target.getBoundingBox().getCenter());
-	}
-	
-	@Override
-	public void onPostMotion()
-	{
-		if(target == null)
+		// face entity
+		//if(!faceEntityClient(target))
+			//return;
+		
+		if(!MC.options.attackKey.isPressed())
 			return;
 		
-		WURST.getHax().criticalsHack.doCritical();
-		ClientPlayerEntity player = MC.player;
-		MC.interactionManager.attackEntity(player, target);
-		player.swingHand(Hand.MAIN_HAND);
 		
-		target = null;
+		
+		if(MC.player.getAttackCooldownProgress(0) < 1)
+			return;
+		
+		InstaAim(target);
+		//ChatUtils.error("Trigger");
+		
+		//AIM AT ME!!
+		//aim(target, (double)MC.getTickDelta(), true);
+		
+		// attack entity
+		//WURST.getHax().criticalsHack.doCritical();
+		//MC.interactionManager.attackEntity(player, target);
+		//player.swingHand(Hand.MAIN_HAND);
+	}
+	
+	private void InstaAim(Entity CCtarget)
+	{
+		
+	    //ChatUtils.error("Trigger");
+		
+		if(CCtarget == null)
+		{
+			return;
+		}
+		
+		
+		if(legitclick.isChecked() == true)
+		{
+			faceEntityClient(CCtarget);
+		}
+		else
+		{
+			aim(CCtarget, MC.getTickDelta(), true);
+		}
+	}
+	
+	private void aim(Entity target, double delta, boolean instant) {
+		
+        vec3d1.set(target, delta);
+
+        vec3d1.add(0, target.getEyeHeight(target.getPose()) / 2, 0);
+
+        double deltaX = vec3d1.x - MC.player.getX();
+        double deltaZ = vec3d1.z - MC.player.getZ();
+        double deltaY = vec3d1.y - (MC.player.getY() + MC.player.getEyeHeight(MC.player.getPose()));
+
+        // Yaw
+        double angle = Math.toDegrees(Math.atan2(deltaZ, deltaX)) - 90;
+        double deltaAngle;
+        double toRotate;
+
+        if (instant) {
+        	MC.player.setYaw((float) angle);
+        } else {
+            //deltaAngle = MathHelper.wrapDegrees(angle - MC.player.getYaw());
+            //toRotate = aimspeed.getValue() * (deltaAngle >= 0 ? 1 : -1) * delta;
+            //if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
+            //MC.player.setYaw(MC.player.getYaw() + (float) toRotate);
+        }
+
+        // Pitch
+        double idk = Math.sqrt(deltaX * deltaX + deltaZ * deltaZ);
+        angle = -Math.toDegrees(Math.atan2(deltaY, idk));
+
+        if (instant) {
+        	MC.player.setPitch((float) angle);
+        } else {
+            //deltaAngle = MathHelper.wrapDegrees(angle - MC.player.getPitch());
+            //toRotate = aimspeed.getValue() * (deltaAngle >= 0 ? 1 : -1) * delta;
+            //if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
+            //MC.player.setPitch(MC.player.getPitch() + (float) toRotate);
+        }
+    }
+
+    private boolean faceEntityClient(Entity entity)
+	{
+		// get position & rotation
+		Vec3d eyesPos = RotationUtils.getEyesPos();
+		Vec3d lookVec = RotationUtils.getServerLookVec();
+		
+		// try to face center of boundingBox
+		Box bb = entity.getBoundingBox();
+		if(faceVectorClient(bb.getCenter()))
+			return true;
+		
+		// if not facing center, check if facing anything in boundingBox
+		return bb
+			.raycast(eyesPos, eyesPos.add(lookVec.multiply(range.getValue())))
+			.isPresent();
+	}
+	
+	private boolean faceVectorClient(Vec3d vec)
+	{
+		Rotation rotation = RotationUtils.getNeededRotations(vec);
+		
+		float oldYaw = MC.player.prevYaw;
+		float oldPitch = MC.player.prevPitch;
+		
+		MC.player.setYaw(limitAngleChange(oldYaw, rotation.getYaw(), 30));
+		MC.player.setPitch(rotation.getPitch());
+		
+		return Math.abs(oldYaw - rotation.getYaw())
+			+ Math.abs(oldPitch - rotation.getPitch()) < 1F;
+	}
+	
+	private float limitAngleChange(float current, float intended,
+		float maxChange)
+	{
+		float change = MathHelper.wrapDegrees(intended - current);
+		change = MathHelper.clamp(change, -maxChange, maxChange);
+		return MathHelper.wrapDegrees(current + change);
 	}
 	
 	@Override
 	public void onRender(MatrixStack matrixStack, float partialTicks)
 	{
-		if(renderTarget == null)
+		if(target == null)
 			return;
 		
 		// GL settings
@@ -325,23 +439,20 @@ public final class KillauraHack extends Hack
 		
 		Box box = new Box(BlockPos.ORIGIN);
 		float p = 1;
-		if(renderTarget instanceof LivingEntity le)
+		if(target instanceof LivingEntity le)
 			p = (le.getMaxHealth() - le.getHealth()) / le.getMaxHealth();
 		float red = p * 2F;
 		float green = 2 - red;
 		
 		matrixStack.translate(
-			renderTarget.prevX
-				+ (renderTarget.getX() - renderTarget.prevX) * partialTicks
+			target.prevX + (target.getX() - target.prevX) * partialTicks
 				- regionX,
-			renderTarget.prevY
-				+ (renderTarget.getY() - renderTarget.prevY) * partialTicks,
-			renderTarget.prevZ
-				+ (renderTarget.getZ() - renderTarget.prevZ) * partialTicks
+			target.prevY + (target.getY() - target.prevY) * partialTicks,
+			target.prevZ + (target.getZ() - target.prevZ) * partialTicks
 				- regionZ);
 		matrixStack.translate(0, 0.05, 0);
-		matrixStack.scale(renderTarget.getWidth(), renderTarget.getHeight(),
-			renderTarget.getWidth());
+		matrixStack.scale(target.getWidth(), target.getHeight(),
+			target.getWidth());
 		matrixStack.translate(-0.5, 0, -0.5);
 		
 		if(p < 1)

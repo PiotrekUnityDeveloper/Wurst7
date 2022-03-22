@@ -9,13 +9,17 @@ package net.wurstclient;
 
 public enum Category
 {
-	BLOCKS("Blocks"),
-	MOVEMENT("Movement"),
 	COMBAT("Combat"),
+	BLATANT("Blatant"),
+	PLAYER("Player"),
+	MOVEMENT("Movement"),
 	RENDER("Render"),
+	BLOCKS("Blocks"),
 	CHAT("Chat"),
+    GHOST("Ghost"),
 	FUN("Fun"),
 	ITEMS("Items"),
+	CLIENT("Client"),
 	OTHER("Other");
 	
 	private final String name;

@@ -174,6 +174,13 @@ public final class HackList implements UpdateListener
 	public final LevitatorHack LevitatorHack = new LevitatorHack();
 	public final AutoMLGHack autoMLGHack = new AutoMLGHack();
 	public final LevelGliderHack levelGliderHack = new LevelGliderHack();
+	public final AutoJumpHack autoJumpHack = new AutoJumpHack();
+	public final SmoothAim smoothAimHack = new SmoothAim();
+	public final AimBot aimBotHack = new AimBot();
+	public final ClickAimBot clickAimBotHack = new ClickAimBot();
+	public final AutoSwingHack autoswingHack = new AutoSwingHack();
+	public final ScaffoldHack scaffoldHack = new ScaffoldHack();
+	
 	
 	private final TreeMap<String, Hack> hax =
 		new TreeMap<>(String::compareToIgnoreCase);

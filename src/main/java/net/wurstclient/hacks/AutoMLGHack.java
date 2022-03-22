@@ -69,7 +69,7 @@ public final class AutoMLGHack extends Hack implements UpdateListener {
 
     public AutoMLGHack() {
         super("AutoMLG");
-        setCategory(Category.MOVEMENT);
+        setCategory(Category.PLAYER);
         addSetting(minFall);
         addSetting(anchor);
         addSetting(doSneak);

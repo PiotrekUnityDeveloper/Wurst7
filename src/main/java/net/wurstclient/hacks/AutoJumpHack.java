@@ -13,29 +13,24 @@ import net.wurstclient.SearchTags;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.mixinterface.IKeyBinding;
-import net.wurstclient.settings.SliderSetting;
-import net.wurstclient.settings.SliderSetting.ValueDisplay;
+import net.wurstclient.settings.CheckboxSetting;
 
-@SearchTags({"miley cyrus", "twerk"})
-public final class MileyCyrusHack extends Hack implements UpdateListener
+@SearchTags({"auto jump", "jumping"})
+public final class AutoJumpHack extends Hack implements UpdateListener
 {
-	private final SliderSetting twerkSpeed = new SliderSetting("Twerk speed",
-		"yes", 5, 1, 10, 1,
-		ValueDisplay.INTEGER);
+	private final CheckboxSetting inair =
+			new CheckboxSetting("In Air", false);
 	
-	private int timer;
-	
-	public MileyCyrusHack()
+	public AutoJumpHack()
 	{
-		super("MileyCyrus");
-		setCategory(Category.FUN);
-		addSetting(twerkSpeed);
+		super("AutoJump");
+		setCategory(Category.MOVEMENT);
+		addSetting(inair);
 	}
 	
 	@Override
 	public void onEnable()
 	{
-		timer = 0;
 		EVENTS.add(UpdateListener.class, this);
 	}
 	
@@ -44,18 +39,22 @@ public final class MileyCyrusHack extends Hack implements UpdateListener
 	{
 		EVENTS.remove(UpdateListener.class, this);
 		
-		KeyBinding sneak = MC.options.sneakKey;
-		sneak.setPressed(((IKeyBinding)sneak).isActallyPressed());
+		///KeyBinding forwardKey = MC.options.forwardKey;
+		///forwardKey.setPressed(((IKeyBinding)forwardKey).isActallyPressed());
 	}
 	
 	@Override
 	public void onUpdate()
 	{
-		timer++;
-		if(timer < 10 - twerkSpeed.getValueI())
-			return;
+		///MC.options.forwardKey.setPressed(true);
 		
-		MC.options.sneakKey.setPressed(!MC.options.sneakKey.isPressed());
-		timer = -1;
+		if(MC.player.isOnGround() == true && inair.isChecked() == false)
+		{
+			MC.player.jump();
+		}
+		else if(inair.isChecked() == true)
+		{
+			MC.player.jump();
+		}
 	}
 }
