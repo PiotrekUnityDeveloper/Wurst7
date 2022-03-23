@@ -69,6 +69,8 @@ public final class CmdList
 	public final ViewNbtCmd viewNbtCmd = new ViewNbtCmd();
 	public final XrayCmd xrayCmd = new XrayCmd();
 	public final LocalGamemodeCmd localgamemodeCmd = new LocalGamemodeCmd();
+	public final SitAuraCmd sitAuraCmd = new SitAuraCmd();
+	public final SpamCmd spamCmd = new SpamCmd();
 	
 	private final TreeMap<String, Command> cmds =
 		new TreeMap<>(String::compareToIgnoreCase);

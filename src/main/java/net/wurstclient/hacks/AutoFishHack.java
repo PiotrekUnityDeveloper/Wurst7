@@ -81,7 +81,7 @@ public final class AutoFishHack extends Hack
 	
 	public AutoFishHack()
 	{
-		super("AutoFish");
+		super("AutoFish", "Auto-Fish-Catcher for fishing");
 		
 		setCategory(Category.PLAYER);
 		addSetting(validRange);

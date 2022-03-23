@@ -207,8 +207,13 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
 		Vec3d result = super.adjustMovementForSneaking(movement, type);
 		
 		if(movement != null)
+		{
 			WurstClient.INSTANCE.getHax().safeWalkHack
-				.onClipAtLedge(!movement.equals(result));
+			.onClipAtLedge(!movement.equals(result));
+			WurstClient.INSTANCE.getHax().scaffoldlegitHack
+			.onClipAtLedge(!movement.equals(result));
+		}
+			
 		
 		return result;
 	}

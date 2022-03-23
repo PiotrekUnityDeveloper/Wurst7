@@ -22,7 +22,7 @@ import net.wurstclient.settings.CheckboxSetting;
 @SearchTags({"FastMine", "SpeedMine", "SpeedyGonzales", "fast break",
 	"fast mine", "speed mine", "speedy gonzales", "NoBreakDelay",
 	"no break delay"})
-public final class FastBreakHack extends Hack
+public final class NoBreakDelayHack extends Hack
 	implements UpdateListener, BlockBreakingProgressListener
 {
 	private final CheckboxSetting legitMode = new CheckboxSetting("Legit mode",
@@ -32,9 +32,9 @@ public final class FastBreakHack extends Hack
 			+ "plugins. Use it if regular FastBreak is not\n" + "working.",
 		false);
 	
-	public FastBreakHack()
+	public NoBreakDelayHack()
 	{
-		super("FastBreak");
+		super("NoBreakDelay");
 		setCategory(Category.BLOCKS);
 		//addSetting(legitMode);
 	}
@@ -64,12 +64,13 @@ public final class FastBreakHack extends Hack
 	@Override
 	public void onUpdate()
 	{
-		//IMC.getInteractionManager().setBlockHitDelay(0);
+		IMC.getInteractionManager().setBlockHitDelay(0);
 	}
 	
 	@Override
 	public void onBlockBreakingProgress(BlockBreakingProgressEvent event)
 	{
+		/*
 		if(legitMode.isChecked())
 			return;
 		
@@ -82,5 +83,6 @@ public final class FastBreakHack extends Hack
 		BlockPos blockPos = event.getBlockPos();
 		Direction direction = event.getDirection();
 		im.sendPlayerActionC2SPacket(action, blockPos, direction);
+		*/
 	}
 }

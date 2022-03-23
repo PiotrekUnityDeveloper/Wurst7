@@ -23,7 +23,7 @@ public final class AutoJumpHack extends Hack implements UpdateListener
 	
 	public AutoJumpHack()
 	{
-		super("AutoJump");
+		super("AutoJump", "Jumps for you");
 		setCategory(Category.MOVEMENT);
 		addSetting(inair);
 	}

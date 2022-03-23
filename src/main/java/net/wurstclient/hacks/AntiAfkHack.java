@@ -47,7 +47,7 @@ public final class AntiAfkHack extends Hack
 	
 	public AntiAfkHack()
 	{
-		super("AntiAFK");
+		super("AntiAFK", "Makes you wont go afk, needs at least 3x3 free space");
 		
 		setCategory(Category.OTHER);
 		addSetting(useAi);

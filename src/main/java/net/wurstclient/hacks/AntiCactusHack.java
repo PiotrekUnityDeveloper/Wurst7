@@ -19,7 +19,7 @@ public final class AntiCactusHack extends Hack
 {
 	public AntiCactusHack()
 	{
-		super("AntiCactus");
+		super("AntiCactus", "Makes you wont take damage from cactus");
 		setCategory(Category.BLOCKS);
 	}
 	

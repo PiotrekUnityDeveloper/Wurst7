@@ -17,7 +17,7 @@ public final class AntiWobbleHack extends Hack
 {
 	public AntiWobbleHack()
 	{
-		super("AntiWobble");
+		super("AntiWobble", "Disables nausea effect");
 		setCategory(Category.RENDER);
 	}
 	

@@ -25,10 +25,10 @@ public abstract class Hack extends Feature
 	private final boolean stateSaved =
 		!getClass().isAnnotationPresent(DontSaveState.class);
 	
-	public Hack(String name)
+	public Hack(String name, String desc)
 	{
 		this.name = Objects.requireNonNull(name);
-		description = "description.wurst.hack." + name.toLowerCase();
+		description = desc;
 		addPossibleKeybind(name, "Toggle " + name);
 	}
 	

@@ -30,7 +30,7 @@ public final class AntiKnockbackHack extends Hack implements KnockbackListener
 	
 	public AntiKnockbackHack()
 	{
-		super("AntiKnockback");
+		super("AntiKnockback", "Reduces your taken knockback");
 		
 		setCategory(Category.COMBAT);
 		addSetting(hStrength);

@@ -45,7 +45,7 @@ public final class AutoLeaveHack extends Hack implements UpdateListener
 	
 	public AutoLeaveHack()
 	{
-		super("AutoLeave");
+		super("AutoLeave", "Leaves the game when youre low on hp");
 		
 		setCategory(Category.COMBAT);
 		addSetting(health);

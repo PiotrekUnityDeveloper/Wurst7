@@ -130,7 +130,7 @@ public final class AimBot extends Hack
 	
 	public AimBot()
 	{
-		super("AimBot");
+		super("AimBot", "Aims at entities");
 		setCategory(Category.COMBAT);
 		addSetting(range);
 		addSetting(priority);

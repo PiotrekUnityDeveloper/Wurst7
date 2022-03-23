@@ -180,6 +180,11 @@ public final class HackList implements UpdateListener
 	public final ClickAimBot clickAimBotHack = new ClickAimBot();
 	public final AutoSwingHack autoswingHack = new AutoSwingHack();
 	public final ScaffoldHack scaffoldHack = new ScaffoldHack();
+	public final PacketCanceller packetCancellerHack = new PacketCanceller();
+	public final InvWalkHack invwalkHack = new InvWalkHack();
+	public final NoBreakDelayHack nobreakdelayHack = new NoBreakDelayHack();
+	public final ScaffoldLegitHack scaffoldlegitHack = new ScaffoldLegitHack();
+	
 	
 	
 	private final TreeMap<String, Hack> hax =

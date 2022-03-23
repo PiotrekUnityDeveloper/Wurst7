@@ -26,7 +26,7 @@ public final class AntiWaterPushHack extends Hack implements UpdateListener,
 	
 	public AntiWaterPushHack()
 	{
-		super("AntiWaterPush");
+		super("AntiWaterPush", "Makes water untouchable for you");
 		setCategory(Category.MOVEMENT);
 		addSetting(preventSlowdown);
 	}
