@@ -68,7 +68,7 @@ public final class AutoMLGHack extends Hack implements UpdateListener {
     );
 
     public AutoMLGHack() {
-        super("AutoMLG");
+        super("AutoMLG", "Makes mlg bucket falls for you to no take fall dmg");
         setCategory(Category.PLAYER);
         addSetting(minFall);
         addSetting(anchor);

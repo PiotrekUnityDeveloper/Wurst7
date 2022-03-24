@@ -72,7 +72,7 @@ public final class XRayHack extends Hack implements UpdateListener,
 	
 	public XRayHack()
 	{
-		super("X-Ray");
+		super("X-Ray", "Gives you an xray vision so you can see ores thru blocks");
 		setCategory(Category.RENDER);
 		addSetting(ores);
 		
